@@ -87,6 +87,7 @@ const handleLogin = () => {
         ElMessage.success(data.info)
         window.sessionStorage.setItem("token", data.token)
         window.sessionStorage.setItem("currentUser", JSON.stringify(data.user))
+        window.sessionStorage.setItem("menuList", JSON.stringify(data.menuList))
         if (loginForm.value.rememberMe) {
           Cookie.set('username', loginForm.value.username, {expires: 30});
           Cookie.set('password', encrypt(loginForm.value.password), {expires: 30});
