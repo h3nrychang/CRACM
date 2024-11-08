@@ -61,6 +61,7 @@ import qs from 'qs'
 import {ElMessage} from 'element-plus'
 import Cookie from 'js-cookie'
 import {encrypt, decrypt} from "@/util/jsencrypt";
+import router from '@/router'
 
 
 const loginForm = ref({
@@ -95,6 +96,7 @@ const handleLogin = () => {
           Cookie.remove('password');
           Cookie.remove('rememberMe');
         }
+        router.replace('/')
       } else {
         ElMessage.error(data.info)
       }

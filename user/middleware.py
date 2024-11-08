@@ -1,16 +1,16 @@
 from django.http import HttpResponse
 from django.utils.deprecation import MiddlewareMixin
-from jwt.exceptions import ExpiredSignatureError, InvalidTokenError, PyJWTError
+from jwt import ExpiredSignatureError, InvalidTokenError, PyJWTError
 from rest_framework_jwt.settings import api_settings
 
 
 class JwtAuthenticationMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
-        white_list = ['user/login']
+        white_list = ["/user/login"]  # 请求白名单
         path = request.path
-        if path not in white_list and not path.startswith('/media'):
-            print('要进行token验证')
+        if path not in white_list and not path.startswith("/media"):
+            print("要进行token验证")
             token = request.META.get('HTTP_AUTHORIZATION')
             print("token:", token)
             try:
